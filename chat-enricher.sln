@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chat-enricher", "chat-enricher.csproj", "{17329F6C-DDE3-4DD6-BCD3-D318018E5609}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17329F6C-DDE3-4DD6-BCD3-D318018E5609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17329F6C-DDE3-4DD6-BCD3-D318018E5609}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17329F6C-DDE3-4DD6-BCD3-D318018E5609}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17329F6C-DDE3-4DD6-BCD3-D318018E5609}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F49E21EE-5CBA-46B5-8826-BBB1422B73CE}
+	EndGlobalSection
+EndGlobal
