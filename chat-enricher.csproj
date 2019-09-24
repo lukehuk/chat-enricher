@@ -33,6 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>packages\Portable.BouncyCastle.1.8.1.2\lib\net4\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Pubnub, Version=4.0.33.0, Culture=neutral, PublicKeyToken=dc66f52ce6619f44, processorArchitecture=MSIL">
+      <HintPath>packages\Pubnub.4.0.33\lib\net461\Pubnub.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,14 +55,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="ChatInputControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChatInputControl.Designer.cs">
+      <DependentUpon>ChatInputControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatEnricherForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ChatEnricherForm.Designer.cs">
+      <DependentUpon>ChatEnricherForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatOutputControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChatOutputControl.Designer.cs">
+      <DependentUpon>ChatOutputControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ChatInputControl.resx">
+      <DependentUpon>ChatInputControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChatEnricherForm.resx">
+      <DependentUpon>ChatEnricherForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChatOutputControl.resx">
+      <DependentUpon>ChatOutputControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,6 +93,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
