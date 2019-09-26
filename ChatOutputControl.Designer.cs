@@ -48,7 +48,6 @@
             this.chatMetadataTextBox.Name = "chatMetadataTextBox";
             this.chatMetadataTextBox.Size = new System.Drawing.Size(350, 325);
             this.chatMetadataTextBox.TabIndex = 1;
-            this.chatMetadataTextBox.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // ChatOutputControl
             // 

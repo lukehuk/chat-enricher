@@ -15,11 +15,24 @@ namespace chat_enricher
         public ChatOutputControl()
         {
             InitializeComponent();
+            this.chatMessagesGridView.Columns.Add("received", "Received");
+            this.chatMessagesGridView.Columns.Add("sent", "Sent");
         }
 
-        private void TextBox1_TextChanged(object sender, EventArgs e)
+        public void NewMessage(string message, bool currentUser)
         {
+            if (currentUser) {
+                Invoke(new Action(() => { this.chatMessagesGridView.Rows.Add(null, message); }));
+            }
+            else
+            {
+                Invoke(new Action(() => { this.chatMessagesGridView.Rows.Add(message, null); }));
+            }
+        }
 
+        internal void UpdateMetadata(string metadata)
+        {
+            Invoke(new Action(() => { this.chatMetadataTextBox.Text = metadata; }));
         }
     }
 }

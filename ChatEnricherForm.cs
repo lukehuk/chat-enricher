@@ -15,21 +15,9 @@ namespace chat_enricher
         public ChatEnricherForm()
         {
             InitializeComponent();
-        }
-
-        private void ChatEnricherForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ChatOutputControl1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ChatInputControl1_Load(object sender, EventArgs e)
-        {
-
+            PubNubMessageHandler pubnubMessageHandler = new PubNubMessageHandler(this.chatOutputControl1);
+            this.chatInputControl1.MessageHandler = pubnubMessageHandler;
+            this.AcceptButton = this.chatInputControl1.SendButton;
         }
     }
 }

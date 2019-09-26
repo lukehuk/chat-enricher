@@ -73,8 +73,11 @@
     <Compile Include="ChatOutputControl.Designer.cs">
       <DependentUpon>ChatOutputControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="IChatMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IMessageHandler.cs" />
+    <Compile Include="PubNubMessageHandler.cs" />
     <EmbeddedResource Include="ChatInputControl.resx">
       <DependentUpon>ChatInputControl.cs</DependentUpon>
     </EmbeddedResource>

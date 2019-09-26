@@ -35,10 +35,10 @@
             // chatInputControl1
             // 
             this.chatInputControl1.Location = new System.Drawing.Point(25, 355);
+            this.chatInputControl1.MessageHandler = null;
             this.chatInputControl1.Name = "chatInputControl1";
             this.chatInputControl1.Size = new System.Drawing.Size(695, 54);
             this.chatInputControl1.TabIndex = 1;
-            this.chatInputControl1.Load += new System.EventHandler(this.ChatInputControl1_Load);
             // 
             // chatOutputControl1
             // 
@@ -46,7 +46,6 @@
             this.chatOutputControl1.Name = "chatOutputControl1";
             this.chatOutputControl1.Size = new System.Drawing.Size(745, 355);
             this.chatOutputControl1.TabIndex = 0;
-            this.chatOutputControl1.Load += new System.EventHandler(this.ChatOutputControl1_Load);
             // 
             // ChatEnricherForm
             // 
@@ -57,7 +56,6 @@
             this.Controls.Add(this.chatOutputControl1);
             this.Name = "ChatEnricherForm";
             this.Text = "Chat Enricher";
-            this.Load += new System.EventHandler(this.ChatEnricherForm_Load);
             this.ResumeLayout(false);
 
         }
