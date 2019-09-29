@@ -15,24 +15,46 @@ namespace chat_enricher
         public ChatOutputControl()
         {
             InitializeComponent();
+
+            //Create the chat message columns and adjust the styling
             this.chatMessagesGridView.Columns.Add("received", "Received");
             this.chatMessagesGridView.Columns.Add("sent", "Sent");
+            this.chatMessagesGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.chatMessagesGridView.Columns[0].DividerWidth = 5;
+            this.chatMessagesGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
+        //Called when a new message is received. 
+        //Adds the message to the relevant chat message data grid view 
         public void NewMessage(string message, bool currentUser)
         {
             if (currentUser) {
-                Invoke(new Action(() => { this.chatMessagesGridView.Rows.Add(null, message); }));
+                Invoke(new Action(() => {
+                    int rowIndex = this.chatMessagesGridView.Rows.Add(null, message);
+                    DataGridViewCellStyle sentStyle = new DataGridViewCellStyle();
+                    sentStyle.BackColor = Color.CornflowerBlue;
+                    this.chatMessagesGridView.Rows[rowIndex].Cells[1].Style = sentStyle;
+                }));
             }
             else
             {
-                Invoke(new Action(() => { this.chatMessagesGridView.Rows.Add(message, null); }));
+                Invoke(new Action(() => {
+                    int rowIndex = this.chatMessagesGridView.Rows.Add(message, null);
+                    DataGridViewCellStyle receivedStyle = new DataGridViewCellStyle();
+                    receivedStyle.BackColor = Color.Gray;
+                    this.chatMessagesGridView.Rows[rowIndex].Cells[0].Style = receivedStyle;
+                }));
             }
         }
 
         internal void UpdateMetadata(string metadata)
         {
             Invoke(new Action(() => { this.chatMetadataTextBox.Text = metadata; }));
+        }
+
+        private void ChatMessagesGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            chatMessagesGridView.ClearSelection();
         }
     }
 }

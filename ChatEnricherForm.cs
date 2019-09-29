@@ -15,8 +15,13 @@ namespace chat_enricher
         public ChatEnricherForm()
         {
             InitializeComponent();
-            PubNubMessageHandler pubnubMessageHandler = new PubNubMessageHandler(this.chatOutputControl1);
+            //Create a PubNub message handler, passing it the output user control to display received messages
+            IMessageHandler pubnubMessageHandler = new PubNubMessageHandler(this.chatOutputControl1);
+
+            //Pass the message handler to the input user control so messages can be published
             this.chatInputControl1.MessageHandler = pubnubMessageHandler;
+
+            //This statement allows the 'ENTER' key to be used to submit a message
             this.AcceptButton = this.chatInputControl1.SendButton;
         }
     }

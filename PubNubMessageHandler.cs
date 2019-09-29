@@ -14,7 +14,7 @@ namespace chat_enricher
         private const string SubscribeKey = "sub-c-a4f0a560-d32d-11e9-a219-a2442d3e7ccc";
         private const string ChannelName = "chat-enrichment";
         private const string ModelType = "extractor";
-        private const string ModelId = "ex_vqBQ7V9B";
+        private const string ModelId = "ex_isnnZRbS"; //MonkeyLearn "Entity Extractor" model
 
         private string userId = Guid.NewGuid().ToString();
         private Pubnub pubnub;
@@ -40,7 +40,7 @@ namespace chat_enricher
                     Console.WriteLine(message.Message);
                     bool messageFromCurrentUser = message.Publisher.ToString() == userId;
 
-                    var chatMessage = JsonConvert.DeserializeObject<IChatMessage>(message.Message.ToString());
+                    var chatMessage = JsonConvert.DeserializeObject<ChatMessage>(message.Message.ToString());
                     if (chatMessage.Text == null || chatMessage.Extractions == null)
                     {
                         Console.WriteLine("Message arrived with an unexpected format:", message.Message);

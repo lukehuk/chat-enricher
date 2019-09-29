@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.chatMessagesGridView = new System.Windows.Forms.DataGridView();
             this.chatMetadataTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chatMessagesGridView)).BeginInit();
@@ -35,17 +36,31 @@
             // 
             // chatMessagesGridView
             // 
+            this.chatMessagesGridView.AllowUserToAddRows = false;
+            this.chatMessagesGridView.AllowUserToDeleteRows = false;
+            this.chatMessagesGridView.AllowUserToResizeColumns = false;
+            this.chatMessagesGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.chatMessagesGridView.BackgroundColor = System.Drawing.Color.White;
             this.chatMessagesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.chatMessagesGridView.ColumnHeadersVisible = false;
+            this.chatMessagesGridView.GridColor = System.Drawing.Color.White;
             this.chatMessagesGridView.Location = new System.Drawing.Point(15, 15);
             this.chatMessagesGridView.Name = "chatMessagesGridView";
+            this.chatMessagesGridView.RowHeadersVisible = false;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.chatMessagesGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.chatMessagesGridView.RowTemplate.DividerHeight = 5;
+            this.chatMessagesGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.chatMessagesGridView.Size = new System.Drawing.Size(350, 325);
             this.chatMessagesGridView.TabIndex = 0;
+            this.chatMessagesGridView.SelectionChanged += new System.EventHandler(this.ChatMessagesGridView_SelectionChanged);
             // 
             // chatMetadataTextBox
             // 
             this.chatMetadataTextBox.Location = new System.Drawing.Point(380, 15);
             this.chatMetadataTextBox.Multiline = true;
             this.chatMetadataTextBox.Name = "chatMetadataTextBox";
+            this.chatMetadataTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.chatMetadataTextBox.Size = new System.Drawing.Size(350, 325);
             this.chatMetadataTextBox.TabIndex = 1;
             // 

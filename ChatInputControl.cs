@@ -28,17 +28,19 @@ namespace chat_enricher
         {
             get
             {
-                return this.sendButton;
+                return sendButton;
             }
         }
 
         public ChatInputControl()
         {
             InitializeComponent();
+            //Disable the send button until a message handler is set
             this.sendButton.Enabled = false;
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        //When the send button is pressed, publish the user entered text and then clear the input text field
+        private void SendButton_Click(object sender, EventArgs e)
         {
             MessageHandler.PublishMessage(this.chatInputTextBox.Text);
             this.chatInputTextBox.Text = "";
