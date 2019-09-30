@@ -47,11 +47,13 @@ namespace chat_enricher
             }
         }
 
-        internal void UpdateMetadata(string metadata)
+        //Allows the chat metadata textbox to be repopulated with different text
+        public void UpdateMetadata(string metadata)
         {
             Invoke(new Action(() => { this.chatMetadataTextBox.Text = metadata; }));
         }
 
+        //Prevents cell selection without disabling the data grid view
         private void ChatMessagesGridView_SelectionChanged(object sender, EventArgs e)
         {
             chatMessagesGridView.ClearSelection();

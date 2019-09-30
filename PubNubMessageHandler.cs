@@ -24,6 +24,7 @@ namespace chat_enricher
         {
             this.chatOutputControl = chatOutputControl;
 
+            //Configure PubNub
             PNConfiguration pnConfiguration = new PNConfiguration
             {
                 PublishKey = PublishKey,
@@ -31,24 +32,30 @@ namespace chat_enricher
                 Uuid = userId,
                 Secure = false
             };
-
             this.pubnub = new Pubnub(pnConfiguration);
 
             //Add listener to receive Publish messages and Presence events
             SubscribeCallbackExt generalSubscribeCallack = new SubscribeCallbackExt(
                 (Pubnub pubnubObj, PNMessageResult<object> message) => {
                     Console.WriteLine(message.Message);
+                    
+                    //Determine if the message publisher is the current user
                     bool messageFromCurrentUser = message.Publisher.ToString() == userId;
 
-                    var chatMessage = JsonConvert.DeserializeObject<ChatMessage>(message.Message.ToString());
+                    //Deserialize the JSON message
+                    EnrichedChatMessage chatMessage = JsonConvert.DeserializeObject<EnrichedChatMessage>(message.Message.ToString());
+
+                    //Verify that both the message text and extraction properties were defined in the message
                     if (chatMessage.Text == null || chatMessage.Extractions == null)
                     {
                         Console.WriteLine("Message arrived with an unexpected format:", message.Message);
                     }
                     else
                     {
+                        //Update the output user control with the new message text
                         chatOutputControl.NewMessage(chatMessage.Text, messageFromCurrentUser);
 
+                        //Convert the message enrichment data into formatted JSON to be displayed 
                         string formattedJsonMetadata = JsonConvert.SerializeObject(chatMessage.Extractions, Formatting.Indented);
                         chatOutputControl.UpdateMetadata(formattedJsonMetadata == "[]" ? "No additional metadata" : formattedJsonMetadata);
                     }
@@ -58,6 +65,7 @@ namespace chat_enricher
             );
             pubnub.AddListener(generalSubscribeCallack);
 
+            //Subscribe to the chat channel
             pubnub.Subscribe<string>()
                 .Channels(new string[]{
                     ChannelName
@@ -65,6 +73,8 @@ namespace chat_enricher
                 .Execute();
         }
 
+        //Called when a chat message should be sent. Accepts a message string, constructs
+        //a chat message object and publishes the chat message using PubNub 
         public void PublishMessage(string messageText)
         {
             pubnub.Publish()
@@ -80,6 +90,8 @@ namespace chat_enricher
             ));
         }
 
+        //Constructs and returns a dictionary of properties representing a chat message.
+        //The object contains the chat message text and enrichment parameters
         private object GenerateChatMessage(string messageText)
         {
             Dictionary<string, string> chatMessage = new Dictionary<string, string>
